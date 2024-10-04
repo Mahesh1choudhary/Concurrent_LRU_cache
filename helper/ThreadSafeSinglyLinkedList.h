@@ -181,7 +181,6 @@ namespace CLL{  // Concurrent LinkedList Library
             }
             
 
-
         private:
             Node<Value>* head=nullptr; // we keep extra node as head node, so first node is head->next
 

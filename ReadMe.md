@@ -10,6 +10,7 @@ each node will have pointer to next node and a value parameter.
 ##### For key-value pair, the HashMap will store key and corresponding values and the linked list holds keys only.
 
 
+
 ## Algorithm
 When a new key-value is accessed, we check if key is present in map or not.
  + If key is present in map,then it is cache hit. We return value corresponding to given key from map and we bring node with this key to front of linked list

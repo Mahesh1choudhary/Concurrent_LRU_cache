@@ -71,5 +71,4 @@ namespace CHML{ // Concurrent Hash Map Library
     };
 }
 
-
 #endif

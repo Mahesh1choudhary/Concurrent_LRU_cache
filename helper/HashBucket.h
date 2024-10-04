@@ -7,7 +7,7 @@
 
 namespace CHML{
 
-    // Bucket implementation as singly linked list of HashNodes
+    //Bucket implementation as singly linked list of HashNodes
     template<typename Key, typename Value> class HashBucket
     {
         public:

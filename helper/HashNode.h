@@ -7,10 +7,7 @@ template<typename Key, typename Value> class HashNode
 {
 public:
     HashNode *next = nullptr;   // pointer to next node in the same bucket
-    HashNode()
-    {
-
-    }
+    HashNode(){}
 
     HashNode(Key key_, Value value_):key(key_), value(value_)
     {
