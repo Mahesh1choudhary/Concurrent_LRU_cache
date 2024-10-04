@@ -8,8 +8,7 @@
 
 namespace LRU{
 
-    std::mutex y;   //
-
+    
     template<typename Value> class Value_Node{
         public:
             Value value;
@@ -75,6 +74,7 @@ namespace LRU{
 
                     // if values are different, then it will be considered as cache access and we update cache
                     val.value= value_;
+                    val.updated=true;
 
                     mp.insert(key_,val);
                     
@@ -113,21 +113,9 @@ namespace LRU{
                         // for testing only, otherwise write your logic to write back to main memory
                         mp.find(key_,val);  // get the val corresponding to key_
 
-                        //
-                        Value x;
-                        memory.find_value(key_,x);
-                        std::unique_lock<std::mutex> l(y);
-                        std::cout<<"update , key= "<<key_<<", is_updated= "<<val.updated<<", value= "<<val.value<<", memory_value= "<<x<<std::endl;
-                        l.unlock();
-                        //
-
-
-
+                        
                         if(val.updated){
                             memory.write_back_to_memory(key_, val.value);
-                            l.lock();   //
-                            std::cout<<"here"<<std::endl;  //
-                            l.unlock();     //
                         }
 
 
@@ -192,20 +180,9 @@ namespace LRU{
                         */
                         mp.find(key_,newval);  // get the value_node corresponding to key_
 
-                        //
-                        Value x;
-                        memory.find_value(key_,x);
-                        std::unique_lock<std::mutex> l(y);
-                        std::cout<<"getvalue , key= "<<key_<<", is_updated= "<<newval.updated<<", value= "<<newval.value<<", memory_value= "<<x<<std::endl;
-                        l.unlock();
-                        //
-
-
+                        
                         if(newval.updated){
                             memory.write_back_to_memory(key_, newval.value);
-                            l.lock();                   //
-                            std::cout<<"here"<<std::endl; //
-                            l.unlock();     //
                         }
 
                         mp.erase(key_);  // remove key from map
