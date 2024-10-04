@@ -1,4 +1,4 @@
-#ifndef HASH_BUCKET_H_
+#ifndef HASH_BUCKET_H
 #define HASH_BUCKET_H
 
 #include "HashNode.h"

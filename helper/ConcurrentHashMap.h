@@ -36,7 +36,7 @@ namespace CHML{ // Concurrent Hash Map Library
         ConcurrentHashMap operator=(ConcurrentHashMap&&)= delete;
 
         // function to find an entry in the HashMap with given key
-        //If key is found, then corresponding value is ris copied to passed parameter and fucntion returns true, otherwise function return false
+        //If key is found, then corresponding value is copied to passed parameter and fucntion returns true, otherwise function return false
         // Here hasfunction should be good enough. For example if hasfunction hashes all values 1 to 10, then there is no benefit of keeping hashsize to be more than 10
         bool find(const Key &key, Value &value) const{
             size_t hashvalue= hashfunction(key)%HashSize;
