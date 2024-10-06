@@ -69,8 +69,20 @@ namespace LRU{
 
                 Value_Node<Value> val;
                 if(mp.find(key_, val)){
-                    // if values ( value in cache and new value to be put) are not different, then we do not consider it as a cache access, as this will be unnecessary
-                    if(val.value ==value_) return;
+                    // if values ( value in cache and new value to be put) are not different, then just bring key in front in linked list
+                    if(val.value ==value_){
+                        // if key is found in linkedlist , bring this at start of linkedlist, and update value of key if val!=value_
+                        if(lst.erase(key_)){
+                            /*
+                            only if a thread erase node with given key, only this will add it in front.
+                            why -> if two threads access the same key and one of the thread already removed the key from linkedlist, then it will add the key in front
+                            If other thread tries to remove same key before first thread insert it in front, then this key is not present in linkedlist, so other thread will not be able to 
+                            remove it, so will not add in front.
+                            */
+                            lst.add_front(key_);
+                        }
+                        return;
+                    }
 
                     // if values are different, then it will be considered as cache access and we update cache
                     val.value= value_;
